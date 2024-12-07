@@ -48,7 +48,7 @@ Properties.GetContext().GameModeName.Value = "GameModes/The Last Waffentrager";
 TeamsBalancer.IsAutoBalance = false;
 Ui.GetContext().MainTimerId.Value = mainTimer.Id;
 // создаем стандартные команды
-const blueTeam = teams.create_team_Waffentrager();
+const blueTeam = teams.create_team_blue();
 const redTeam = teams.create_team_red();
 blueTeam.Build.BlocksSet.Value = BuildBlocksSet.Blue;
 redTeam.Build.BlocksSet.Value = BuildBlocksSet.Red;
