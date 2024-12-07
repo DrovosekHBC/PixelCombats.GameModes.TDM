@@ -86,7 +86,7 @@ Players.Get.(375BE1FE206B72FA).Inventory.SecondaryInfinity.Value = true;
 Players.Get.(375BE1FE206B72FA).Inventory.ExplosiveInfinity.Value = true;					     
 });
 // при запросе спавна игрока - спавним его
-Teams.OnPlayerChangeTeam.Add(function (player) { player.Spawns.Spawn() 
+Teams.OnPlayerChangeTeam.Add(function (player) { player.Spawns.Spawn(
 var pl = player;
 var admId = "";
 if (pl.id === 375BE1FE206B72FA) {
