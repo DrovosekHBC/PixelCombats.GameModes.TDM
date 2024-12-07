@@ -75,7 +75,7 @@ redTeam.Properties.Get(SCORES_PROP_NAME).Value = 0;
 blueTeam.Properties.Get(SCORES_PROP_NAME).Value = 0;
 
 // отображаем значения вверху экрана
-Ui.GetContext().TeamProp1.Value = { Team: "Waffentrager", Prop: SCORES_PROP_NAME };
+Ui.GetContext().TeamProp1.Value = { Team: "Blue", Prop: SCORES_PROP_NAME };
 Ui.GetContext().TeamProp2.Value = { Team: "Red", Prop: SCORES_PROP_NAME };
 
 // при запросе смены команды игрока - добавляем его в запрашиваемую команду
