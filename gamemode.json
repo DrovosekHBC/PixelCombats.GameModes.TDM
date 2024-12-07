@@ -1,6 +1,6 @@
 {
-  "Name": "TDM",
-  "Description": "Team Death Match. Битва двух команд",
+  "Name": "The Last Waffentrager",
+  "Description": "Последний в своём роде, будет даже немного жалко",
   "StartClientVersion": 573,
   "MapFilter": {
     "IsBlank": false,
