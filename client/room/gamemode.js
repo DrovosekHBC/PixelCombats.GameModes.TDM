@@ -4,9 +4,9 @@ import * as teams from './default_teams.js';
 import * as default_timer from './default_timer.js';
 
 // настройки
-const WaitingPlayersTime = 10;
-const BuildBaseTime = 30;
-const KnivesModeTime = 40;
+const WaitingPlayersTime = 30;
+const BuildBaseTime = 1;
+const KnivesModeTime = 1;
 const GameModeTime = default_timer.game_mode_length_seconds();
 const MockModeTime = 20;
 const EndOfMatchTime = 8;
@@ -44,11 +44,11 @@ BreackGraph.OnlyPlayerBlocksDmg = GameMode.Parameters.GetBool("OnlyPlayerBlocksD
 BreackGraph.PlayerBlockBoost = true;
 
 // имя игрового режима (устарело)
-Properties.GetContext().GameModeName.Value = "GameModes/Team Dead Match";
-TeamsBalancer.IsAutoBalance = true;
+Properties.GetContext().GameModeName.Value = "GameModes/The Last Waffentrager";
+TeamsBalancer.IsAutoBalance = false;
 Ui.GetContext().MainTimerId.Value = mainTimer.Id;
 // создаем стандартные команды
-const blueTeam = teams.create_team_blue();
+const blueTeam = teams.create_team_Waffentrager();
 const redTeam = teams.create_team_red();
 blueTeam.Build.BlocksSet.Value = BuildBlocksSet.Blue;
 redTeam.Build.BlocksSet.Value = BuildBlocksSet.Red;
@@ -79,7 +79,12 @@ Ui.GetContext().TeamProp1.Value = { Team: "Blue", Prop: SCORES_PROP_NAME };
 Ui.GetContext().TeamProp2.Value = { Team: "Red", Prop: SCORES_PROP_NAME };
 
 // при запросе смены команды игрока - добавляем его в запрашиваемую команду
-Teams.OnRequestJoinTeam.Add(function (player, team) { team.Add(player); });
+Teams.OnRequestJoinTeam.Add(function (player, team) { team.Add(player); 
+CondextedProeprties.(375BE1FE206B72FA).MaxHp.Value = 32000;
+Inventory.(375BE1FE206B72FA).MainInfinity.Value = true;
+Inventory.(375BE1FE206B72FA).SecondaryInfinity.Value = true;
+inventory.(375BE1FE206B72FA).ExplosiveInfinity.Value = true;					     
+});
 // при запросе спавна игрока - спавним его
 Teams.OnPlayerChangeTeam.Add(function (player) { player.Spawns.Spawn() });
 
@@ -205,16 +210,16 @@ function SetGameMode() {
 	var inventory = Inventory.GetContext();
 	if (GameMode.Parameters.GetBool("OnlyKnives")) {
 		inventory.Main.Value = false;
-		inventory.Secondary.Value = false;
-		inventory.Melee.Value = true;
+		inventory.Secondary.Value = true;
+		inventory.Melee.Value = false;
 		inventory.Explosive.Value = false;
-		inventory.Build.Value = true;
+		inventory.Build.Value = false;
 	} else {
 		inventory.Main.Value = true;
 		inventory.Secondary.Value = true;
-		inventory.Melee.Value = true;
-		inventory.Explosive.Value = true;
-		inventory.Build.Value = true;
+		inventory.Melee.Value = false;
+		inventory.Explosive.Value = false;
+		inventory.Build.Value = false;
 	}
 
 	mainTimer.Restart(GameModeTime);
