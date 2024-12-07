@@ -80,10 +80,10 @@ Ui.GetContext().TeamProp2.Value = { Team: "Red", Prop: SCORES_PROP_NAME };
 
 // при запросе смены команды игрока - добавляем его в запрашиваемую команду
 Teams.OnRequestJoinTeam.Add(function (player, team) { team.Add(player); 
-CondextedProeprties.GetContext.(375BE1FE206B72FA).MaxHp.Value = 32000;
-Inventory.Inventory.(375BE1FE206B72FA).MainInfinity.Value = true;
-Inventory.Inventory.(375BE1FE206B72FA).SecondaryInfinity.Value = true;
-inventory.Inventory.(375BE1FE206B72FA).ExplosiveInfinity.Value = true;					     
+Players.Get.(375BE1FE206B72FA).ContextedProperties.MaxHp.Value = 32000;
+Players.Get.(375BE1FE206B72FA).Inventory.MainInfinity.Value = true;
+Players.Get.(375BE1FE206B72FA).Inventory.SecondaryInfinity.Value = true;
+Players.Get.(375BE1FE206B72FA).Inventory.ExplosiveInfinity.Value = true;					     
 });
 // при запросе спавна игрока - спавним его
 Teams.OnPlayerChangeTeam.Add(function (player) { player.Spawns.Spawn() 
