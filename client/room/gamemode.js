@@ -79,11 +79,38 @@ Ui.GetContext().TeamProp1.Value = { Team: "Blue", Prop: SCORES_PROP_NAME };
 Ui.GetContext().TeamProp2.Value = { Team: "Red", Prop: SCORES_PROP_NAME };
 
 // при запросе смены команды игрока - добавляем его в запрашиваемую команду
-Teams.OnRequestJoinTeam.Add(function (player, team) { team.Add(player); 
-Players.Get.(375BE1FE206B72FA).ContextedProperties.MaxHp.Value = 23000;
-Players.Get.(375BE1FE206B72FA).Inventory.MainInfinity.Value = true;
-Players.Get.(375BE1FE206B72FA).Inventory.SecondaryInfinity.Value = true;
-Players.Get.(375BE1FE206B72FA).Inventory.ExplosiveInfinity.Value = true;					     
+// Подписка на событие смены команды
+Teams.OnTeam.Subscribe(OnPlayerTeamChanged);
+    }
+ Teams.OnPlayerTeamChanged(IPlayerApi player)
+    {
+        if (player.Team != null && player.Inventory != null)
+        {
+            AssignWeaponToPlayer(player);
+        }
+    }
+
+AssignWeaponToPlayer(IPlayerApi player)
+    {
+        // Пример ID оружия для выдачи
+        const string weaponId = "weapon_main"; // Замените на ID нужного оружия
+
+        // Проверяем наличие инвентаря у игрока
+        var inventory = player.Inventory;
+
+        if (inventory != null)
+        {
+            // Разрешаем основное оружие и делаем бесконечный боезапас
+            inventory.Main.Value = true;
+            inventory.MainInfinity.Value = true;
+
+            // Восстанавливаем боезапас
+            inventory.Restore();
+
+            Console.WriteLine($"Игроку {player.NickName} выдано оружие {weaponId}");
+        }
+    }
+}					     
 });
 // при запросе спавна игрока - спавним его
 Teams.OnPlayerChangeTeam.Add(function (player) { player.Spawns.Spawn(
